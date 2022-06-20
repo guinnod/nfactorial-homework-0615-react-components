@@ -12,10 +12,10 @@ import { ItemLists } from "../sw-item-lists";
 
 
 
-export const Content = ({selectValue}) => {
+export const Content = ({selectValue, themV}) => {
   const [first, setF] = useState(true);
   const [selector, setSelector] = useState("Characters");
-  
+  const[sec, setS] = useState('#E6E6E6');
   const handleSelectorChange = (event) => {
     setSelector(event.target.value);
     setF(false);
@@ -26,8 +26,11 @@ export const Content = ({selectValue}) => {
     setF(true);
     }
   }, [selectValue])
+  useEffect(()=>{
+    setS(!sec);
+  },[themV])
   return (
-    <div className="content-layout">
+    <div className="content-layout" style={{backgroundColor: !sec?'':'#E6E6E6'}}>
       <select
         value={selector}
         placeholder="Choose your path"
@@ -66,12 +69,13 @@ export const Content = ({selectValue}) => {
           </ItemLists>
         ))}
          {selectValue.name != undefined && first &&
-           <ItemLists key={selectValue.name} item={selectValue} type="">
+          <div style={{color: 'blue !important'}}> <ItemLists key={selectValue.name} item={selectValue} type="">
             {Object.keys(selectValue).map((e) => (
-              <ItemSpisok style={{color: 'white'}}>{e}: {selectValue[e]}</ItemSpisok>
+              <ItemSpisok ><div>{e}: {selectValue[e]}</div></ItemSpisok>
             ))
             }
             </ItemLists>
+            </div>
           }
           
         

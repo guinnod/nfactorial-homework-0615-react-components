@@ -33,12 +33,16 @@ const arr = temp.concat(swStarships);
      setSel(found);
      //console.log(found);
   }
+  const [theme1, setTheme] = useState(true);
+  const handleSetTheme = () => {
+    setTheme(!theme1);
+}
   return (
-    <DefaultContext.Provider value={{ handleCreateFan, handleSetSelector }}>
+    <DefaultContext.Provider value={{ handleCreateFan, handleSetSelector, handleSetTheme }}>
       <Header fan={fan} />
       <hr />
-      <Content selectValue={sel}/>
-      <Footer />
+      <Content selectValue={sel} themV={theme1}/>
+      <Footer theme={theme1}/>
     </DefaultContext.Provider>
   );
 }

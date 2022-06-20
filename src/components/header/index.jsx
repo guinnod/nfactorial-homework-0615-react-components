@@ -6,6 +6,12 @@ import { ReactComponent as InstagramLogoSVG } from "../../assets/instagram.svg";
 import { ReactComponent as TwitterLogoSVG } from "../../assets/twitter.svg";
 import { ReactComponent as YoutubeLogoSVG } from "../../assets/youtube.svg";
 import {SearchMui} from "../searchmui/SearchMui";
+import { DarkMode, LightMode } from "@mui/icons-material";
+import { useState } from "react";
+
+import { useContext } from "react";
+import { DefaultContext } from "../../Context";
+
 
 //массив данных ссылок
 const swLinks = [
@@ -32,7 +38,12 @@ const swLinks = [
 ];
 
 export const Header = ({ fan }) => {
-  
+  const {handleSetTheme} = useContext(DefaultContext);
+ const [mode, setMode] = useState(true);
+ const handleSetMode = () => {
+ handleSetTheme();
+  setMode(!mode);
+ }
   return (
     <header>
       <div className="links-layout">
@@ -58,7 +69,9 @@ export const Header = ({ fan }) => {
         <div style={{ color: "white", paddingTop: "1rem" }}>
           I am fan of: {fan}
         </div>
-      </div>
+      {mode&&<div style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', height: '80px', marginRight: '10px'}}><LightMode onClick={handleSetMode} style={{color: 'white', width: '50px',height: '50px'}}></LightMode></div>}
+        {!mode&&<div style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', height: '80px', marginRight: '10px'}}><DarkMode onClick={handleSetMode} style={{color: 'black', width: '50px',height: '50px'}}></DarkMode></div>}
+         </div>
 
     </header>
   );
