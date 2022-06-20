@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useEffect } from "react";
 import swCharacters from "../../data/characters.json";
 import swPlanets from "../../data/planets.json";
 import swStarships from "../../data/starships.json";
@@ -13,13 +13,19 @@ import { ItemLists } from "../sw-item-lists";
 
 
 export const Content = ({selectValue}) => {
+  const [first, setF] = useState(true);
   const [selector, setSelector] = useState("Characters");
-  const temp = swCharacters.concat(swPlanets);
-  const arr = temp.concat(swStarships);
+  
   const handleSelectorChange = (event) => {
     setSelector(event.target.value);
+    setF(false);
   };
-  
+  useEffect(()=>{
+    if (selectValue.name != undefined) {
+    setSelector('');
+    setF(true);
+    }
+  }, [selectValue])
   return (
     <div className="content-layout">
       <select
@@ -34,12 +40,7 @@ export const Content = ({selectValue}) => {
       </select>
           
          
-          {
-            Object.keys(selectValue).map((e) => (
-              <h1 style={{color: 'white'}}>{e}: {selectValue[e]}</h1>
-            ))
-          }
-          
+         
         
         
       {selector === "Characters" &&
@@ -64,7 +65,15 @@ export const Content = ({selectValue}) => {
             <ItemSpisok>Length: {starship.length}</ItemSpisok>
           </ItemLists>
         ))}
-        
+         {selectValue.name != undefined && first &&
+           <ItemLists key={selectValue.name} item={selectValue} type="">
+            {Object.keys(selectValue).map((e) => (
+              <ItemSpisok style={{color: 'white'}}>{e}: {selectValue[e]}</ItemSpisok>
+            ))
+            }
+            </ItemLists>
+          }
+          
         
     </div>
   );

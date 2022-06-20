@@ -28,7 +28,7 @@ const arr = temp.concat(swStarships);
       return obj.name == value;
     });
     Object.keys(found).map((ke) => {
-      console.log(`${ke}: ${found[ke]}`);
+      //console.log(`${ke}: ${found[ke]}`);
     })
      setSel(found);
      //console.log(found);
