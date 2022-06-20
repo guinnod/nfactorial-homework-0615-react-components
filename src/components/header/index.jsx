@@ -5,6 +5,7 @@ import { ReactComponent as FacebookLogoSVG } from "../../assets/facebook.svg";
 import { ReactComponent as InstagramLogoSVG } from "../../assets/instagram.svg";
 import { ReactComponent as TwitterLogoSVG } from "../../assets/twitter.svg";
 import { ReactComponent as YoutubeLogoSVG } from "../../assets/youtube.svg";
+import {SearchMui} from "../searchmui/SearchMui";
 
 //массив данных ссылок
 const swLinks = [
@@ -31,6 +32,7 @@ const swLinks = [
 ];
 
 export const Header = ({ fan }) => {
+  
   return (
     <header>
       <div className="links-layout">
@@ -49,12 +51,15 @@ export const Header = ({ fan }) => {
       </div>
       <StarWarsLogoSVG />
       <div className="search-layout">
-        <IconSearchSVG className="search-icon" />
-        <input placeholder="Search Star Wars" type="text" />
+       <div style={{backgroundColor: 'white', height: '80px', width: '320px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '10px', paddingBottom: '8px'}}>
+        {/* <input placeholder="Search Star Wars" type="text" /> */}
+        <SearchMui/>
+        </div>
         <div style={{ color: "white", paddingTop: "1rem" }}>
           I am fan of: {fan}
         </div>
       </div>
+
     </header>
   );
 };

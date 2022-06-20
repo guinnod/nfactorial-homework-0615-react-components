@@ -4,17 +4,22 @@ import swCharacters from "../../data/characters.json";
 import swPlanets from "../../data/planets.json";
 import swStarships from "../../data/starships.json";
 
+
+
 import { ItemSpisok } from "../sw-item-spisok";
 
 import { ItemLists } from "../sw-item-lists";
 
-export const Content = ({ handleCreateFan }) => {
-  const [selector, setSelector] = useState("Characters");
 
+
+export const Content = ({selectValue}) => {
+  const [selector, setSelector] = useState("Characters");
+  const temp = swCharacters.concat(swPlanets);
+  const arr = temp.concat(swStarships);
   const handleSelectorChange = (event) => {
     setSelector(event.target.value);
   };
-
+  
   return (
     <div className="content-layout">
       <select
@@ -27,7 +32,16 @@ export const Content = ({ handleCreateFan }) => {
         <option>Planets</option>
         <option>Starships</option>
       </select>
-
+          
+         
+          {
+            Object.keys(selectValue).map((e) => (
+              <h1 style={{color: 'white'}}>{e}: {selectValue[e]}</h1>
+            ))
+          }
+          
+        
+        
       {selector === "Characters" &&
         swCharacters.map((character) => (
           <ItemLists key={character.name} item={character} type="chars">
@@ -50,7 +64,8 @@ export const Content = ({ handleCreateFan }) => {
             <ItemSpisok>Length: {starship.length}</ItemSpisok>
           </ItemLists>
         ))}
-
+        
+        
     </div>
   );
 };
