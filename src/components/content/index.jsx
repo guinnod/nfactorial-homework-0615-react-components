@@ -18,6 +18,7 @@ export const Content = ({selectValue, themV}) => {
   const[sec, setS] = useState('#E6E6E6');
   const handleSelectorChange = (event) => {
     setSelector(event.target.value);
+   
     setF(false);
   };
   useEffect(()=>{
@@ -48,30 +49,30 @@ export const Content = ({selectValue, themV}) => {
         
       {selector === "Characters" &&
         swCharacters.map((character) => (
-          <ItemLists key={character.name} item={character} type="chars">
-            <ItemSpisok>gender: {character.gender}</ItemSpisok>
-            <ItemSpisok>birthday: {character.birth_year}</ItemSpisok>
+          <ItemLists sxItemText={{color: !sec?'':'black'}} key={character.name} item={character} type="chars">
+            <ItemSpisok sxItemText={{color: !sec?'':'black'}}>gender: {character.gender}</ItemSpisok>
+            <ItemSpisok sxItemText={{color: !sec?'':'black'}}>birthday: {character.birth_year}</ItemSpisok>
           </ItemLists>
         ))}
 
       {selector === "Planets" &&
         swPlanets.map((planet) => (
-          <ItemLists key={planet.name} item={planet} type="planets">
-            <ItemSpisok>Rotation Period: {planet.rotation_period}</ItemSpisok>
-            <ItemSpisok>Orbital Period: {planet.orbital_period}</ItemSpisok>
+          <ItemLists sxItemText={{color: !sec?'':'black'}} key={planet.name} item={planet} type="planets">
+            <ItemSpisok sxItemText={{color: !sec?'':'black'}}>Rotation Period: {planet.rotation_period}</ItemSpisok>
+            <ItemSpisok sxItemText={{color: !sec?'':'black'}}>Orbital Period: {planet.orbital_period}</ItemSpisok>
           </ItemLists>
         ))}
         {selector === "Starships" &&
         swStarships.map((starship) => (
-          <ItemLists key={starship.name} item={starship} type="starships">
-            <ItemSpisok>Cargo Capacity: {starship.cargo_capacity}</ItemSpisok>
-            <ItemSpisok>Length: {starship.length}</ItemSpisok>
+          <ItemLists sxItemText={{color: !sec?'':'black'}} key={starship.name} item={starship} type="starships">
+            <ItemSpisok sxItemText={{color: !sec?'':'black'}}>Cargo Capacity: {starship.cargo_capacity}</ItemSpisok>
+            <ItemSpisok sxItemText={{color: !sec?'':'black'}}>Length: {starship.length}</ItemSpisok>
           </ItemLists>
         ))}
          {selectValue.name != undefined && first &&
-          <div style={{color: 'blue !important'}}> <ItemLists key={selectValue.name} item={selectValue} type="">
+          <div> <ItemLists sxItemText={{color: !sec?'':'black'}} key={selectValue.name} item={selectValue} type="">
             {Object.keys(selectValue).map((e) => (
-              <ItemSpisok ><div>{e}: {selectValue[e]}</div></ItemSpisok>
+              <ItemSpisok  sxItemText={{color: !sec?"":'black !important'}}><div>{e}: {selectValue[e]}</div></ItemSpisok>
             ))
             }
             </ItemLists>

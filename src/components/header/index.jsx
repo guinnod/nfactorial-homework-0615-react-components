@@ -45,7 +45,7 @@ export const Header = ({ fan }) => {
   setMode(!mode);
  }
   return (
-    <header>
+    <header style={{backgroundColor: mode?'':'#E6E6E6'}}>
       <div className="links-layout">
         {swLinks.map((link) => (
           <a
@@ -60,13 +60,13 @@ export const Header = ({ fan }) => {
           </a>
         ))}
       </div>
-      <StarWarsLogoSVG />
+      <StarWarsLogoSVG sx={{color: 'black'}}/>
       <div className="search-layout">
        <div style={{backgroundColor: 'white', height: '80px', width: '320px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '10px', paddingBottom: '8px'}}>
         {/* <input placeholder="Search Star Wars" type="text" /> */}
         <SearchMui/>
         </div>
-        <div style={{ color: "white", paddingTop: "1rem" }}>
+        <div style={{ color: mode?"white":'black', paddingTop: "1rem" }}>
           I am fan of: {fan}
         </div>
       {mode&&<div style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', height: '80px', marginRight: '10px'}}><LightMode onClick={handleSetMode} style={{color: 'white', width: '50px',height: '50px'}}></LightMode></div>}

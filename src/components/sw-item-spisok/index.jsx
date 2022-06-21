@@ -2,11 +2,12 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 
-export const ItemSpisok = ({ children }) => {
+export const ItemSpisok = ({ children,sxItemText}) => {
+ 
   return (
     <ListItem disablePadding>
       <ListItemButton>
-        <ListItemText primary={children} />
+        <ListItemText sx={sxItemText} primary={children} />
       </ListItemButton>
     </ListItem>
   );

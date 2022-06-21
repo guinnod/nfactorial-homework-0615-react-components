@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { DefaultContext } from "../../Context";
 
-export const ItemLists = ({ item, children, type }) => {
+export const ItemLists = ({ item, children, type, sxItemText }) => {
   const { handleCreateFan } = useContext(DefaultContext);
 
   return (
     <div key={item.name} className="item-list-layout">
       <div>
-        <p>name: {item.name}</p>
+        <p style={sxItemText}>name: {item.name}</p>
         {children}
       </div>
       <div className="item-image-layout">
